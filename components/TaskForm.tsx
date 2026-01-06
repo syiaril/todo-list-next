@@ -36,8 +36,8 @@ export default function TaskForm() {
                         defaultValue="medium"
                         className="w-full h-full bg-slate-800/50 border border-transparent focus:border-violet-500/50 hover:bg-slate-800 text-slate-300 p-3.5 focus:outline-none rounded-xl appearance-none cursor-pointer transition-all text-sm font-medium"
                     >
-                        <option value="high">Critical</option>
-                        <option value="medium">Normal</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
                         <option value="low">Low</option>
                     </select>
                 </div>
