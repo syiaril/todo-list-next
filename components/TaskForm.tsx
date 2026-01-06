@@ -2,6 +2,7 @@
 
 import { addTask } from '@/actions/tasks'
 import { useRef } from 'react'
+import { Plus } from 'lucide-react'
 
 export default function TaskForm() {
     const ref = useRef<HTMLFormElement>(null)
@@ -13,44 +14,42 @@ export default function TaskForm() {
                 await addTask(formData)
                 ref.current?.reset()
             }}
-            className="flex flex-col gap-4 bg-white p-6 rounded-lg shadow-md mb-8 border border-slate-200"
+            className="flex flex-col md:flex-row gap-4 bg-slate-900/40 backdrop-blur-xl p-2 md:p-3 border border-white/5 rounded-2xl shadow-2xl shadow-black/20 mb-10"
         >
-            <div className="flex flex-col gap-2">
-                <label htmlFor="title" className="font-semibold text-slate-700">
-                    New Task
-                </label>
+            <div className="flex-grow">
                 <input
                     type="text"
                     name="title"
                     id="title"
-                    placeholder="What needs to be done?"
+                    placeholder="Add a new task..."
                     required
-                    className="border border-slate-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-slate-800/50 border border-transparent focus:border-violet-500/50 focus:bg-slate-800 focus:ring-4 focus:ring-violet-500/10 p-3.5 text-slate-100 placeholder:text-slate-500 focus:outline-none transition-all rounded-xl text-base"
+                    autoComplete="off"
                 />
             </div>
 
-            <div className="flex flex-col gap-2">
-                <label htmlFor="priority" className="font-semibold text-slate-700">
-                    Priority
-                </label>
-                <select
-                    name="priority"
-                    id="priority"
-                    defaultValue="medium"
-                    className="border border-slate-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                >
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select>
-            </div>
+            <div className="flex gap-2">
+                <div className="relative md:w-32">
+                    <select
+                        name="priority"
+                        id="priority"
+                        defaultValue="medium"
+                        className="w-full h-full bg-slate-800/50 border border-transparent focus:border-violet-500/50 hover:bg-slate-800 text-slate-300 p-3.5 focus:outline-none rounded-xl appearance-none cursor-pointer transition-all text-sm font-medium"
+                    >
+                        <option value="high">Critical</option>
+                        <option value="medium">Normal</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
 
-            <button
-                type="submit"
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-2"
-            >
-                Add Task
-            </button>
+                <button
+                    type="submit"
+                    className="h-full aspect-square md:aspect-auto md:px-6 bg-violet-600 hover:bg-violet-500 text-white rounded-xl shadow-lg shadow-violet-500/20 hover:shadow-violet-500/40 transition-all duration-200 flex items-center justify-center font-bold"
+                >
+                    <Plus size={22} strokeWidth={2.5} />
+                    <span className="hidden md:inline ml-2">Add</span>
+                </button>
+            </div>
         </form>
     )
 }
